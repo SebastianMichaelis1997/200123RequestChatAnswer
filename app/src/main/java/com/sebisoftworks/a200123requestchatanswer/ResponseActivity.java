@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ResponseActivity extends AppCompatActivity implements View.OnClickListener {
-    protected Button btSend;
     TextView tv_from;
     TextView tv_to;
     EditText et_message;
@@ -24,6 +23,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
     String to;
     String from;
     static ResponseActivity mThis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +48,25 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         Message m = new Message(from, "1578994420215", et_message.getText().toString());
-        ArrayList<Message> messages = MessageAcitvity.mThis.mData;
+        ArrayList<Message> messages = new ArrayList<>();
         messages.add(m);
         try {
+            new CloudstoreAcces(messages, CloudstoreAcces.MODE_RETRIEVE_RECIPENT_MESSAGE_LIST).execute("https://webtechlecture.appspot.com/cloudstore/get?owner=shortchat&key=" + to);
+        } catch (Exception e) {
+        }
+    }
+
+    public void sendMessages(ArrayList<Message> allMessages) {
+        try {
             JSONArray jsonArray = new JSONArray();
-            for (Message current : messages) {
+            for (Message current : allMessages) {
                 jsonArray.put(current.toJSONObject());
             }
             JSONObject jo = new JSONObject();
             jo.put("messages", jsonArray);
-            CloudstoreAcces cl = new CloudstoreAcces(CloudstoreAcces.MODE_SEND_MESSAGE);
-            String url = "https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString();
-            cl.execute(url);
+            new CloudstoreAcces(CloudstoreAcces.MODE_SEND_MESSAGE).execute("https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString());
         } catch (Exception e) {
-
         }
-
     }
 
     public void messageSuccess(Boolean success) {

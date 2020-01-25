@@ -18,6 +18,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
     public static final int MODE_GET_KEYS = 0;
     public static final int MODE_RETRIEVE_MESSAGE_LIST = 1;
     public static final int MODE_SEND_MESSAGE = 2;
+    public static final int MODE_RETRIEVE_RECIPENT_MESSAGE_LIST = 3;
 
     public CloudstoreAcces(ArrayList aData, int aMode) {
         mData = aData;
@@ -96,6 +97,31 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                     } else {
                         ResponseActivity.mThis.messageSuccess(false);
                     }
+                }
+                break;
+                case MODE_RETRIEVE_RECIPENT_MESSAGE_LIST: {
+                    if (!new JSONObject(aResponse).has("messages")) {
+                        ResponseActivity.mThis.sendMessages(mData);
+                        return;
+                    }
+                    JSONArray jsonArray = new JSONObject(aResponse).getJSONArray("messages");
+                    if (jsonArray.length() == 0) {
+                        ResponseActivity.mThis.sendMessages(mData);
+                        return;
+                    }
+                    Message newMessage = (Message) mData.get(0);
+                    mData = new ArrayList<Message>();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject current = jsonArray.getJSONObject(i);
+                        if (current.has("sender") && current.has("timestamp") && current.has("text")) {
+                            String from = current.getString("sender");
+                            String text = current.getString("text");
+                            String date = current.getString("timestamp");
+                            mData.add(new Message(from, date, text));
+                        }
+                    }
+                    mData.add(newMessage);
+                    ResponseActivity.mThis.sendMessages(mData);
                 }
             }
         } catch (JSONException e) {
