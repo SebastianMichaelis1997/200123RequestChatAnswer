@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ResponseActivity extends AppCompatActivity implements View.OnClickListener {
     TextView tv_from;
@@ -47,7 +48,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        Message m = new Message(from, "1578994420215", et_message.getText().toString());
+        Message m = new Message(from, new Date(), et_message.getText().toString());
         ArrayList<Message> messages = new ArrayList<>();
         messages.add(m);
         try {

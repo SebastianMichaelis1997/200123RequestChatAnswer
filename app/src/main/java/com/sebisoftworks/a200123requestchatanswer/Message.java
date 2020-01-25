@@ -3,15 +3,29 @@ package com.sebisoftworks.a200123requestchatanswer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class Message {
     private String sender;
-    private String date;
+    private Date date;
     private String text;
 
 
-    public Message(String sender, String date, String text) {
+    public Message(String sender, Date date, String text) {
         this.sender = sender;
         this.date = date;
+        this.text = text;
+    }
+
+    public Message(String sender, long date, String text) {
+        this.sender = sender;
+        this.date = new Date(date);
+        this.text = text;
+    }
+
+    public Message(String sender, String date, String text) {
+        this.sender = sender;
+        this.date = new Date(new Long(date));
         this.text = text;
     }
 
@@ -19,7 +33,7 @@ public class Message {
         return sender;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -28,7 +42,7 @@ public class Message {
     }
 
     public String toJsonString() {
-        String json = "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date + "\"}";
+        String json = "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date.getTime() + "\"}";
         return json;
     }
 

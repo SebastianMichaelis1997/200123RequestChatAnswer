@@ -32,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewholder> {
     public void onBindViewHolder(@NonNull MyViewholder holder, int pos) {
         Message message = mData.get(pos);
         holder.tv_message.setText(message.getText());
-        holder.tv_date.setText(new Date(new Long(message.getDate())).toString());
+        holder.tv_date.setText(message.getDate().toString());
         holder.tv_from.setText(message.getSender());
     }
 
