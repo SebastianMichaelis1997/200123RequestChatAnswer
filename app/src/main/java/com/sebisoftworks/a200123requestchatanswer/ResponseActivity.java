@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
     Button bt_send;
     String to;
     String from;
+    static ResponseActivity mThis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
         tv_to = findViewById(R.id.tv_to);
         et_message = findViewById(R.id.et_message);
         bt_send = findViewById(R.id.bt_send);
+        mThis = this;
 
         Intent i = getIntent();
         from = i.getStringExtra("from");
@@ -57,14 +60,18 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
             CloudstoreAcces cl = new CloudstoreAcces(CloudstoreAcces.MODE_SEND_MESSAGE);
             String url = "https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString();
             cl.execute(url);
-
         } catch (Exception e) {
 
         }
 
     }
 
-    public void messageSucces() {
+    public void messageSuccess(Boolean success) {
+        if (success) {
+            Toast.makeText(this, "Message successfully delivered", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Message delivery failed", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

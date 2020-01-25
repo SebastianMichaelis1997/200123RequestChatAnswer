@@ -85,9 +85,18 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                 }
                 break;
                 case MODE_SEND_MESSAGE: {
+                    JSONObject jo = new JSONObject(aResponse);
+                    if (jo.has("status")) {
+                        if (jo.get("status").toString().equals("ok")) {
+                            ResponseActivity.mThis.messageSuccess(true);
+                        } else {
+                            ResponseActivity.mThis.messageSuccess(false);
 
+                        }
+                    } else {
+                        ResponseActivity.mThis.messageSuccess(false);
+                    }
                 }
-                ;
             }
         } catch (JSONException e) {
             e.printStackTrace();
