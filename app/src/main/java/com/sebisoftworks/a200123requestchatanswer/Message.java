@@ -8,6 +8,7 @@ public class Message {
     private String date;
     private String text;
 
+
     public Message(String sender, String date, String text) {
         this.sender = sender;
         this.date = date;

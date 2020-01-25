@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MessageAcitvity extends AppCompatActivity {
-    ArrayList<Message> mData;
+    public ArrayList<Message> mData;
     MyAdapter mMyAdapter;
     static MessageAcitvity mThis;
     String key;

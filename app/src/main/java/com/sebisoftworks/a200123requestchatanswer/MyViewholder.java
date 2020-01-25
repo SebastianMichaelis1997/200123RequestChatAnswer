@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class MyViewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView tv_from;
     TextView tv_message;
     TextView tv_date;

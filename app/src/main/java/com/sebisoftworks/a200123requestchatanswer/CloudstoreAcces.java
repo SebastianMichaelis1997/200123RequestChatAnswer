@@ -17,8 +17,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
     int mode;
     public static final int MODE_GET_KEYS = 0;
     public static final int MODE_RETRIEVE_MESSAGE_LIST = 1;
-    public static final int MODE_RETRIEVE_MESSAGE_STRING = 2;
-    public static final int MODE_SEND_MESSAGE = 3;
+    public static final int MODE_SEND_MESSAGE = 2;
 
     public CloudstoreAcces(ArrayList aData, int aMode) {
         mData = aData;
@@ -85,6 +84,10 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                     MessageAcitvity.mThis.dataSetChanged();
                 }
                 break;
+                case MODE_SEND_MESSAGE: {
+
+                }
+                ;
             }
         } catch (JSONException e) {
             e.printStackTrace();
