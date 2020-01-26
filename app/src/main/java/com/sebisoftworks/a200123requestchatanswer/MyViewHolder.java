@@ -6,12 +6,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyViewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     TextView tv_from;
     TextView tv_message;
     TextView tv_date;
 
-    public MyViewholder(@NonNull View itemView) {
+    public MyViewHolder(@NonNull View itemView) {
         super(itemView);
         tv_from = itemView.findViewById(R.id.tv_from);
         tv_date = itemView.findViewById(R.id.tv_date);
@@ -21,7 +21,7 @@ public class MyViewholder extends RecyclerView.ViewHolder implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        MessageAcitvity.mThis.startResponseActivity(MessageAcitvity.mThis.key, tv_from.getText().toString());
+        MessageActivity.mThis.startResponseActivity(MessageActivity.mThis.key, tv_from.getText().toString());
     }
 }
 

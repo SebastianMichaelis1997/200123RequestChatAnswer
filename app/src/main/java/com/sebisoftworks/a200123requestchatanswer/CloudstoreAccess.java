@@ -13,20 +13,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
+public class CloudstoreAccess extends AsyncTask<String, Integer, String> {
     ArrayList mData;
     int mode;
     public static final int MODE_GET_KEYS = 0;
     public static final int MODE_RETRIEVE_MESSAGE_LIST = 1;
     public static final int MODE_SEND_MESSAGE = 2;
-    public static final int MODE_RETRIEVE_RECIPENT_MESSAGE_LIST = 3;
+    public static final int MODE_RETRIEVE_RECIPIENT_MESSAGE_LIST = 3;
 
-    public CloudstoreAcces(ArrayList aData, int aMode) {
+    public CloudstoreAccess(ArrayList aData, int aMode) {
         mData = aData;
         mode = aMode;
     }
 
-    public CloudstoreAcces(int aMode) {
+    public CloudstoreAccess(int aMode) {
         mode = aMode;
     }
 
@@ -71,7 +71,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                     JSONArray jsonArray = new JSONObject(aResponse).getJSONArray("messages");
                     if (jsonArray.length() == 0) {
                         mData.add("Invalid User Key");
-                        MessageAcitvity.mThis.dataSetChanged();
+                        MessageActivity.mThis.dataSetChanged();
                         return;
                     }
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -83,7 +83,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                             mData.add(new Message(from, new Date(new Long(date)), text));
                         }
                     }
-                    MessageAcitvity.mThis.dataSetChanged();
+                    MessageActivity.mThis.dataSetChanged();
                 }
                 break;
                 case MODE_SEND_MESSAGE: {
@@ -100,7 +100,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                     }
                 }
                 break;
-                case MODE_RETRIEVE_RECIPENT_MESSAGE_LIST: {
+                case MODE_RETRIEVE_RECIPIENT_MESSAGE_LIST: {
                     if (!new JSONObject(aResponse).has("messages")) {
                         ResponseActivity.mThis.sendMessages(mData);
                         return;

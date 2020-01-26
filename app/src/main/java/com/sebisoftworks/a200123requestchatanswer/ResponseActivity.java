@@ -52,7 +52,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
         ArrayList<Message> messages = new ArrayList<>();
         messages.add(m);
         try {
-            new CloudstoreAcces(messages, CloudstoreAcces.MODE_RETRIEVE_RECIPENT_MESSAGE_LIST).execute("https://webtechlecture.appspot.com/cloudstore/get?owner=shortchat&key=" + to);
+            new CloudstoreAccess(messages, CloudstoreAccess.MODE_RETRIEVE_RECIPIENT_MESSAGE_LIST).execute("https://webtechlecture.appspot.com/cloudstore/get?owner=shortchat&key=" + to);
         } catch (Exception e) {
         }
     }
@@ -65,7 +65,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
             }
             JSONObject jo = new JSONObject();
             jo.put("messages", jsonArray);
-            new CloudstoreAcces(CloudstoreAcces.MODE_SEND_MESSAGE).execute("https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString());
+            new CloudstoreAccess(CloudstoreAccess.MODE_SEND_MESSAGE).execute("https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString());
         } catch (Exception e) {
         }
     }

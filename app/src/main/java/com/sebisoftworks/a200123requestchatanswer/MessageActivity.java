@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MessageAcitvity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
     public ArrayList<Message> mData;
     MyAdapter mMyAdapter;
-    static MessageAcitvity mThis;
+    static MessageActivity mThis;
     String key;
 
     @Override
@@ -25,7 +25,7 @@ public class MessageAcitvity extends AppCompatActivity {
         tv_name.setText(key);
         mData = new ArrayList<Message>();
         mThis = this;
-        new CloudstoreAcces(mData, CloudstoreAcces.MODE_RETRIEVE_MESSAGE_LIST).execute("https://webtechlecture.appspot.com/cloudstore/get?owner=shortchat&key=" + key);
+        new CloudstoreAccess(mData, CloudstoreAccess.MODE_RETRIEVE_MESSAGE_LIST).execute("https://webtechlecture.appspot.com/cloudstore/get?owner=shortchat&key=" + key);
         mMyAdapter = new MyAdapter(mData);
         RecyclerView resiglerView = findViewById(R.id.recyclerView);
         resiglerView.setLayoutManager(new LinearLayoutManager(this));

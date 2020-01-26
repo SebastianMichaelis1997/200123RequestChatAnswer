@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewholder> {
+public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     ArrayList<Message> mData;
 
@@ -19,16 +19,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewholder> {
 
     @NonNull
     @Override
-    public MyViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View newView = inflater.inflate(R.layout.message_element, parent, false);
-        MyViewholder viewholder = new MyViewholder(newView);
-        return viewholder;
+        MyViewHolder viewHolder = new MyViewHolder(newView);
+        return viewHolder;
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewholder holder, int pos) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int pos) {
         Message message = mData.get(pos);
         holder.tv_message.setText(message.getText());
         holder.tv_date.setText(message.getDate().toString());

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         mThis = this;
         mData = new ArrayList<String>();
-        CloudstoreAcces cl = new CloudstoreAcces(mData, CloudstoreAcces.MODE_GET_KEYS);
+        CloudstoreAccess cl = new CloudstoreAccess(mData, CloudstoreAccess.MODE_GET_KEYS);
 
         mArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mData);
         ListView list = findViewById(R.id.list);
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent i = new Intent(this, MessageAcitvity.class);
+        Intent i = new Intent(this, MessageActivity.class);
         String key = (String) mData.get(position);
         i.putExtra("key", key);
         startActivity(i);
