@@ -49,6 +49,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         Message m = new Message(from, new Date(), et_message.getText().toString());
+        et_message.setEnabled(false);
         ArrayList<Message> messages = new ArrayList<>();
         messages.add(m);
         try {
@@ -73,9 +74,12 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
     public void messageSuccess(Boolean success) {
         if (success) {
             Toast.makeText(this, "Message successfully delivered", Toast.LENGTH_LONG).show();
+            finish();
         } else {
             Toast.makeText(this, "Message delivery failed", Toast.LENGTH_LONG).show();
+            et_message.setEnabled(true);
         }
+
 
     }
 }

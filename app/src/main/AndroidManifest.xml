@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sebisoftworks.a200123requestchatanswer.ResponseActivity" />
-        <activity android:name="com.sebisoftworks.a200123requestchatanswer.MessageActivity" />
-        <activity android:name="com.sebisoftworks.a200123requestchatanswer.MainActivity">
+        <activity android:name=".ResponseActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
