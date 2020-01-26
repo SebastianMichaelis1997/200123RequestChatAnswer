@@ -5,36 +5,35 @@ import org.json.JSONObject;
 
 import java.util.Date;
 
-public class Message {
+class Message {
     private String sender;
     private Date date;
     private String text;
 
 
-    public Message(String sender, Date date, String text) {
+     Message(String sender, Date date, String text) {
         this.sender = sender;
         this.date = date;
         this.text = text;
     }
 
-    public String getSender() {
+     String getSender() {
         return sender;
     }
 
-    public Date getDate() {
+     Date getDate() {
         return date;
     }
 
-    public String getText() {
+     String getText() {
         return text;
     }
 
-    public String toJsonString() {
-        String json = "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date.getTime() + "\"}";
-        return json;
+     private String toJsonString() {
+         return "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date.getTime() + "\"}";
     }
 
-    public JSONObject toJSONObject() {
+     JSONObject toJSONObject() {
         try {
             return new JSONObject(toJsonString());
         } catch (JSONException e) {
