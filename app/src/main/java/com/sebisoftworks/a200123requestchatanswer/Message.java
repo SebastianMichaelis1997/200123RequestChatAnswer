@@ -17,18 +17,6 @@ public class Message {
         this.text = text;
     }
 
-    public Message(String sender, long date, String text) {
-        this.sender = sender;
-        this.date = new Date(date);
-        this.text = text;
-    }
-
-    public Message(String sender, String date, String text) {
-        this.sender = sender;
-        this.date = new Date(new Long(date));
-        this.text = text;
-    }
-
     public String getSender() {
         return sender;
     }

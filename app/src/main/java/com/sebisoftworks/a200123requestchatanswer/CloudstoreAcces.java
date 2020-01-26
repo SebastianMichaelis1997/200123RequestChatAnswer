@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
     ArrayList mData;
@@ -79,7 +80,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                             String from = current.getString("sender");
                             String text = current.getString("text");
                             String date = current.getString("timestamp");
-                            mData.add(new Message(from, date, text));
+                            mData.add(new Message(from, new Date(new Long(date)), text));
                         }
                     }
                     MessageAcitvity.mThis.dataSetChanged();
@@ -117,7 +118,7 @@ public class CloudstoreAcces extends AsyncTask<String, Integer, String> {
                             String from = current.getString("sender");
                             String text = current.getString("text");
                             String date = current.getString("timestamp");
-                            mData.add(new Message(from, date, text));
+                            mData.add(new Message(from, new Date(new Long(date)), text));
                         }
                     }
                     mData.add(newMessage);
