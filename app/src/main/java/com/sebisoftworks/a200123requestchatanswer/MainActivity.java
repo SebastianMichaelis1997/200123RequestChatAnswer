@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    static MainActivity mThis;
     ArrayAdapter<String> mArrayAdapter;
     ArrayList<String> mData;
-    static MainActivity mThis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

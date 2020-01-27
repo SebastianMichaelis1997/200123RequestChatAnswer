@@ -11,29 +11,29 @@ class Message {
     private String text;
 
 
-     Message(String sender, Date date, String text) {
+    Message(String sender, Date date, String text) {
         this.sender = sender;
         this.date = date;
         this.text = text;
     }
 
-     String getSender() {
+    String getSender() {
         return sender;
     }
 
-     Date getDate() {
+    Date getDate() {
         return date;
     }
 
-     String getText() {
+    String getText() {
         return text;
     }
 
-     private String toJsonString() {
-         return "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date.getTime() + "\"}";
+    private String toJsonString() {
+        return "{\"sender\":\"" + sender + "\",\"text\":\"" + text + "\",\"timestamp\":\"" + date.getTime() + "\"}";
     }
 
-     JSONObject toJSONObject() {
+    JSONObject toJSONObject() {
         try {
             return new JSONObject(toJsonString());
         } catch (JSONException e) {

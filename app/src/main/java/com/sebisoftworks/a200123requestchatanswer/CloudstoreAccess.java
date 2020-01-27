@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CloudstoreAccess extends AsyncTask<String, Integer, String> {
-    ArrayList mData;
-    int mode;
     public static final int MODE_GET_KEYS = 0;
     public static final int MODE_RETRIEVE_MESSAGE_LIST = 1;
     public static final int MODE_SEND_MESSAGE = 2;
     public static final int MODE_RETRIEVE_RECIPIENT_MESSAGE_LIST = 3;
+    ArrayList mData;
+    int mode;
 
     public CloudstoreAccess(ArrayList aData, int aMode) {
         mData = aData;

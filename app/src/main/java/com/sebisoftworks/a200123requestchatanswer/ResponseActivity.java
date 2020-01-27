@@ -17,14 +17,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ResponseActivity extends AppCompatActivity implements View.OnClickListener {
+    static ResponseActivity mThis;
     TextView tv_from;
     TextView tv_to;
     EditText et_message;
     Button bt_send;
     String to;
     String from;
-    static ResponseActivity mThis;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +65,7 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
             }
             JSONObject jo = new JSONObject();
             jo.put("messages", jsonArray);
+//            System.out.println("https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString());
             new CloudstoreAccess(CloudstoreAccess.MODE_SEND_MESSAGE).execute("https://webtechlecture.appspot.com/cloudstore/add?owner=shortchat&key=" + to + "&jsonstring=" + jo.toString());
         } catch (Exception e) {
         }
@@ -76,10 +76,8 @@ public class ResponseActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Message successfully delivered", Toast.LENGTH_LONG).show();
             finish();
         } else {
-            Toast.makeText(this, "Message delivery failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Message delivery failed.\nPlease try again", Toast.LENGTH_LONG).show();
             et_message.setEnabled(true);
         }
-
-
     }
 }
