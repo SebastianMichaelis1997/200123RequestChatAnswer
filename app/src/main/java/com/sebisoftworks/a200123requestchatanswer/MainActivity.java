@@ -21,14 +21,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mThis = this;
-        mData = new ArrayList<String>();
-        CloudstoreAccess cl = new CloudstoreAccess(mData, CloudstoreAccess.MODE_GET_KEYS);
+        mData = new ArrayList<>();
 
         mArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mData);
         ListView list = findViewById(R.id.list);
         list.setAdapter(mArrayAdapter);
-        cl.execute("https://webtechlecture.appspot.com/cloudstore/listkeys?owner=shortchat");
         list.setOnItemClickListener(this);
+        new CloudstoreAccess(mData, CloudstoreAccess.MODE_GET_KEYS).execute("https://webtechlecture.appspot.com/cloudstore/listkeys?owner=shortchat");
     }
 
     public void dataSetChanged() {

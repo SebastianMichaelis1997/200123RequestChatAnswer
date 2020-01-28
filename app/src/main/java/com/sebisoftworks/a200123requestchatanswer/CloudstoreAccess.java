@@ -64,14 +64,16 @@ public class CloudstoreAccess extends AsyncTask<String, Integer, String> {
                         mData.add(jsonArray.getJSONObject(i).getString("key"));
                     }
                     MainActivity.mThis.dataSetChanged();
+                    break;
                 }
-                break;
                 case MODE_RETRIEVE_MESSAGE_LIST: {
                     //Response is list of messages
-                    JSONArray jsonArray = new JSONObject(aResponse).getJSONArray("messages");
+                    JSONObject jsonObject = new JSONObject(aResponse);
+                    if (!jsonObject.has("messages")) {
+                        MessageActivity.mThis.foundInvalid();
+                    }
+                    JSONArray jsonArray = jsonObject.getJSONArray("messages");
                     if (jsonArray.length() == 0) {
-                        mData.add("Invalid User Key");
-                        MessageActivity.mThis.dataSetChanged();
                         return;
                     }
                     for (int i = 0; i < jsonArray.length(); i++) {
@@ -84,8 +86,8 @@ public class CloudstoreAccess extends AsyncTask<String, Integer, String> {
                         }
                     }
                     MessageActivity.mThis.dataSetChanged();
+                    break;
                 }
-                break;
                 case MODE_SEND_MESSAGE: {
                     JSONObject jo = new JSONObject(aResponse);
                     if (jo.has("status")) {
@@ -98,8 +100,8 @@ public class CloudstoreAccess extends AsyncTask<String, Integer, String> {
                     } else {
                         ResponseActivity.mThis.messageSuccess(false);
                     }
+                    break;
                 }
-                break;
                 case MODE_RETRIEVE_RECIPIENT_MESSAGE_LIST: {
                     if (!new JSONObject(aResponse).has("messages")) {
                         ResponseActivity.mThis.sendMessages(mData);
